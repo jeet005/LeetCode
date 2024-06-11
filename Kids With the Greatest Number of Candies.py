@@ -5,8 +5,9 @@ def kidsWithCandies(candies, extraCandies):
     :rtype: List[bool]
     """
     output = []
+    maxCandies = max(candies)
     for candy in candies:
-        if int(candy + extraCandies) >= int(max(candies)):
+        if int(candy + extraCandies) >= maxCandies:
             output.append('True')
         else:
             output.append('False')
