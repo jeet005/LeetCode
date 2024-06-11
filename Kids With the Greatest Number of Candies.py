@@ -7,11 +7,8 @@ def kidsWithCandies(candies, extraCandies):
     output = []
     maxCandies = max(candies)
     for candy in candies:
-        if int(candy + extraCandies) >= maxCandies:
-            output.append('True')
-        else:
-            output.append('False')
-    
+            output.append(candy + extraCandies >= maxCandies)
+                
     return output
 
 
