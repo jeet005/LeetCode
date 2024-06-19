@@ -6,17 +6,11 @@ class Solution(object):
         :rtype: bool
         """
 
-        if s == "":
-            return True
-
-        count = 0
-        for n in t:
-            if count < len(s) and s[count] == n:
-                count += 1
-
-        if count >= len(s):
-            return True
-        else:
-            return False
+        i, j = 0, 0
+        while i < len(s) and j < len(t):
+            if s[i] == t[j]:
+                i += 1
+            j += 1
+        return i == len(s)
 
         
