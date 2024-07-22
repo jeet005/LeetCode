@@ -3,21 +3,22 @@ class Solution:
         
         left, right = 0, k
         points = 0
-        j = len(calories)
         consumed = sum(calories[left:right])
-        while right <= j:
+        while right <= len(calories):
             
-            if right-1 != j:
-                caloriesconsumed = consumed + calories[right]
-                caloriesconsumed = caloriesconsumed - calories[left]
-
-                if caloriesconsumed < lower:
+                
+                if consumed < lower:
                     points -= 1
-                elif caloriesconsumed > upper:
+                elif consumed > upper:
                     points += 1
 
-            left += 1
-            right += 1
+                if right < len(calories):
+                    consumed = consumed - calories[left]
+                    consumed = consumed + calories[right]
+
+
+                left += 1
+                right += 1
             
 
         return points
