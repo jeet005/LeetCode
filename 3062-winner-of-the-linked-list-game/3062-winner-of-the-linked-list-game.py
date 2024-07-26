@@ -9,7 +9,6 @@ class Solution:
         even = head
         even_points = 0
         odd_points = 0
-
         # Traverse through the linked list assigning points
         while even is not None:
             odd = even.next
