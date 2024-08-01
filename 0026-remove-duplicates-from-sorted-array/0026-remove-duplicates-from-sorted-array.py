@@ -6,9 +6,9 @@ class Solution:
         for right in range(1, size):
             if nums[right-1] != nums[right]:
                 nums[left] = nums[right]
-                ll.append(nums[left])
+                
                 left += 1
-
+            ll.append(nums[right])
         return left 
         
         
