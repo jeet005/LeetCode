@@ -1,7 +1,6 @@
 class Solution:
     def removeOccurrences(self, s: str, part: str) -> str:
         while part in s:
-            index = s.index(part)
-            s = s[:index] + s[index+len(part):]
+            s= s.replace(part,"",1)
         return s
         
