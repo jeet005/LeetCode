@@ -3,21 +3,28 @@ from collections import Counter
 class Solution:
     def closeStrings(self, word1: str, word2: str) -> bool:
         
-        hmap1 = Counter(word1)
-        hmap2 = Counter(word2)
-        hmap1 = dict(sorted(hmap1.items()))
-        hmap2 = dict(sorted(hmap2.items()))
-        if word1 == word2:
-            return True
-        
+        from collections import Counter
+
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        # Check if both words have the same length
         if len(word1) != len(word2):
             return False
-
-        for key, val in hmap1.items():
-            if key not in hmap2:
-                return False
-            
+        
+        # Create frequency maps using Counter
+        word1_map = Counter(word1)
+        word2_map = Counter(word2)
+        
+        # Compare character sets directly (unordered comparison)
+        if set(word1_map.keys()) != set(word2_map.keys()):
+            return False
+        
+        # Compare the frequency histograms (unordered comparison)
+        if Counter(word1_map.values()) != Counter(word2_map.values()):
+            return False
+        
         return True
+
 
         
 
