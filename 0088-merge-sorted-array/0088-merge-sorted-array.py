@@ -17,4 +17,5 @@ class Solution:
             else:
                 nums1[p] = nums2[p2]
                 p2 -= 1
+            print(p, nums1, p1, p2)
         
