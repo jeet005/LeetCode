@@ -3,20 +3,23 @@ from collections import Counter
 class Solution:
     def maximumLengthSubstring(self, s: str) -> int:
         
-        if len(s) > 2 and len(set(s)) == 1:
-            return 2
+        dd = defaultdict(int)  # Dictionary to store character counts
+        left = 0  # Left pointer of the sliding window
+        max_length = 0  # Variable to track the maximum length
 
-        d = defaultdict(int)
-        l = 0
-        r = 0
-        res = 0
+        for right in range(len(s)):
+            # Increment the count of the current character
+            dd[s[right]] += 1
 
-        while l < len(s) and r < len(s):
-            if s[r] not in d or d[s[r]] < 2:
-                d[s[r]] +=1
-                res = max(res, r - l + 1)
-                r+=1
-            else:
-                d[s[l]]-=1
-                l+=1
-        return res
+            # Ensure the window is valid by moving the left pointer until no character exceeds 2
+            if dd[s[right]] > 2:
+                while dd[s[right]] > 2:
+                    dd[s[left]] -= 1
+                    if dd[s[left]] == 0:
+                        del dd[s[left]]
+                    left += 1
+
+            # Update the maximum length
+            max_length = max(max_length, right - left + 1)
+
+        return max_length
