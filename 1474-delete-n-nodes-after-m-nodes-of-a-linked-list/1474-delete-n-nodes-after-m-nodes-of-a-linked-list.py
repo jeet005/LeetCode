@@ -6,31 +6,25 @@
 class Solution:
     def deleteNodes(self, head: Optional[ListNode], m: int, n: int) -> Optional[ListNode]:
         
-        itr = head
-        count = 0
-        while itr:
-            count += 1
-            itr = itr.next
-
-        current = head
-        keep = 0
-        skip = 0
-        while current:
-            if keep < m - 1:
-                keep += 1
-                current = current.next
-            else:
-                if skip < n and current.next:
-                    current.next = current.next.next
-                    skip += 1
-                else:
-                    temp = keep + skip
-                    count -= temp
-                    keep = 0
-                    skip = 0
-                    current = current.next
+        current_node = head
+        last_m_node = head
         
-        return head
-
+        while current_node:
+            # Initialize m_count to m and n_count to n
+            m_count, n_count = m, n
             
+            # Traverse m nodes
+            while current_node and m_count > 0:
+                last_m_node = current_node
+                current_node = current_node.next
+                m_count -= 1
+            
+            # Traverse n nodes
+            while current_node and n_count > 0:
+                current_node = current_node.next
+                n_count -= 1
+            
+            # Delete n nodes
+            last_m_node.next = current_node
+        
         return head
