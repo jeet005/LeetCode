@@ -19,11 +19,11 @@ class Solution:
 
         itr = ListNode(0)
         itr.next = head
+        first = itr
         idx = 0
-        while itr:
-            if remove_idx > 0:
-                itr.next = itr.next.next
-            
-            itr = itr.next
-        
-        return head
+        while remove_idx > 0:
+            remove_idx -= 1
+            first = first.next
+        first.next = first.next.next
+
+        return itr.next
