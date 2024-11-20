@@ -11,13 +11,13 @@ class Solution:
             return False
 
         tmp = head.next
-        hmap = {}
+        hmap = set()
         
         while tmp:
-            if tmp.val in hmap:
+            if tmp in hmap:
                 return True
             else:
-                hmap[tmp.val] = 1
+                hmap.add(tmp)
                 tmp = tmp.next
             
         return False
