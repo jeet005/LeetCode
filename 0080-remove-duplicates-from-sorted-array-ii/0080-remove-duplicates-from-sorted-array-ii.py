@@ -20,6 +20,6 @@ class Solution:
             i += 1
 
         del nums[j:]
-        return len(nums)
+        return j
 
 
