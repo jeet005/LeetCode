@@ -1,8 +1,19 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         
-        for x in range(len(nums)):
-            for i in range(x + 1, len(nums)):
-                if nums[x] + nums[i] == target:
-                    return x, i
-        
+        # hashMap = {}
+
+        # for x in range(len(nums)):
+        #     if nums[x] in hashMap:
+        #         return x, hashMap[val]
+        #     else:
+        #         val = abs(nums[x] - target)
+        #         hashMap[val] = x
+
+        values={}
+
+        for i,n in enumerate(nums):
+            diff=target-n
+            if diff in values:
+                return (values[diff],i)
+            values[n]=i
