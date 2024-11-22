@@ -1,17 +1,20 @@
 class Logger:
 
     def __init__(self):
-        self.hashMap = {}
+        self._msg_dict = {}
 
     def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
-        if message in self.hashMap:
-            if timestamp < self.hashMap[message]:
-                return False
-            else:
-                return True
+        if message not in self._msg_dict:
+            # case 1). add the message to print
+            self._msg_dict[message] = timestamp
+            return True
 
-        self.hashMap[message] = timestamp + 10
-        return True
+        if timestamp - self._msg_dict[message] >= 10:
+            # case 2). update the timestamp of the message
+            self._msg_dict[message] = timestamp
+            return True
+        else:
+            return False
         
 
 
