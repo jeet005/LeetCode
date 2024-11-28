@@ -2,18 +2,18 @@ class Logger:
 
     def __init__(self):
         self.hashMap = {}
-        
 
     def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
-        if message not in self.hashMap:
-            self.hashMap[message] = timestamp + 10
-            return True
-        else:
-            if self.hashMap[message] > timestamp:
+        if message in self.hashMap:
+            if timestamp < self.hashMap[message]:
                 return False
             else:
-                self.hashMap[message] += timestamp
+                self.hashMap[message] = timestamp + 10
                 return True
+
+        self.hashMap[message] = timestamp + 10
+        return True
+        
 
 
 # Your Logger object will be instantiated and called as such:
