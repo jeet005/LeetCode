@@ -11,7 +11,7 @@ class Solution:
             x //= 10  # Remove the last digit
             
             # Check for overflow before updating reversed_num
-            if reversed_num > (INT_MAX) // 10:
+            if reversed_num > (INT_MAX - digit) // 10:
                 return 0  # Overflow
             
             reversed_num = reversed_num * 10 + digit
