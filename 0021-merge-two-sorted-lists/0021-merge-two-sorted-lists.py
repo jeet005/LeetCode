@@ -17,21 +17,6 @@ class Solution:
                 list2 = list2.next
             temp1 = temp1.next
 
-        if list1 is not None:
-            while list1:
-                temp1.next = ListNode(list1.val)
-                list1 = list1.next
-                temp1 = temp1.next
-
-        if list2 is not None:
-            while list2:
-                temp1.next = ListNode(list2.val)
-                list2 = list2.next
-                temp1 = temp1.next
-
-        
-        return temp.next
-
-
+        temp1.next = list1 if list1 is not None else list2
 
         return temp.next
