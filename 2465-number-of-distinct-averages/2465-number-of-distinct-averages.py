@@ -1,17 +1,35 @@
 class Solution:
     def distinctAverages(self, nums: List[int]) -> int:
+        # Use a set to store distinct averages
+        averages = set()
 
-        res = []
+        # Bucket sort-like approach: Keep track of the frequency of elements
+        max_val = max(nums)
+        min_val = min(nums)
+        freq = [0] * (max_val + 1)
 
-        while len(nums) > 1:
-            max_ = max(nums)
-            min_ = min(nums)
+        # Populate frequency array
+        for num in nums:
+            freq[num] += 1
 
-            avg = (max_ + min_) / 2
-            if avg not in res:
-                res.append(avg)
+        # Two-pointer approach: Find pairs from the smallest and largest numbers
+        i, j = 0, max_val
+        while i <= j:
+            # Skip numbers with 0 frequency
+            while i <= j and freq[i] == 0:
+                i += 1
+            while i <= j and freq[j] == 0:
+                j -= 1
 
-            nums.remove(max_)
-            nums.remove(min_)
+            # If valid pair exists
+            if i <= j:
+                # Calculate average and add to set
+                avg = (i + j) / 2
+                averages.add(avg)
 
-        return len(res)
+                # Decrease frequency for both numbers
+                freq[i] -= 1
+                freq[j] -= 1
+
+        # Return the number of distinct averages
+        return len(averages)
