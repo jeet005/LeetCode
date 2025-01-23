@@ -1,9 +1,15 @@
 class Solution:
     def maximumNumberOfStringPairs(self, words: List[str]) -> int:
-        output = 0
-        for i in range(len(words)):
-            for j in range(i+1, len(words)):
-                if words[i] == words[j][::-1]:
-                    output += 1
 
-        return output
+        hashmap = {}
+        count = 0
+
+        for word in words:
+            reversed_ = word[::-1]
+
+            if reversed_ in hashmap:
+                count += 1
+            else:
+                hashmap[word] = 1
+
+        return count
