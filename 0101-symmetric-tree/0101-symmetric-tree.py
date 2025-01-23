@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def isSymmetric(self, root: Optional[TreeNode]) -> bool:
-        
+
         q = [root, root]
 
         while q:
@@ -27,4 +27,5 @@ class Solution:
 
         return True
 
-
+# Time complexity = O(n)
+# Space = O(n)
