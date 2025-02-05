@@ -1,18 +1,15 @@
 class RecentCounter:
 
     def __init__(self):
-        self.requests = []
+        self.requests = deque()
 
     def ping(self, t: int) -> int:
         self.requests.append(t)
-        start = t - 3000
-        end = t
-        count = 0
-        for i in self.requests:
-            if i >= start and i <= end:
-                count += 1
-
-        return count
+        
+        while self.requests[0] < t - 3000:
+            self.requests.popleft()
+        
+        return len(self.requests)
 
 
 # Your RecentCounter object will be instantiated and called as such:
